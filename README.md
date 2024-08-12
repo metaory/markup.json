@@ -1,7 +1,9 @@
 <div align="center">
-  <h1>mini-json2html</h1>
+  <h3>mini-json2html</h3>
   <img src=".github/assets/json2html.svg" width="168px"/>
-  <h4>Tiny JSON to HTML Transpiler Library and CLI with Zero dependencies</h4>
+  <h4>Tiny JSON to HTML Transpiler</h4>
+  <h5>Library and CLI</h5>
+  <h4>with Zero dependencies</h4>
 </div>
 
 ---

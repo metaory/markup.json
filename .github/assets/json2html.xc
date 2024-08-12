@@ -8,22 +8,21 @@
 
 set d 0
 set o 0
-set r 50
+set r 0
 set ff monospace
 set fw bold
-set fs 8em
+set fs 7em
 set s 500
-set fg #5522FF
-
+set fg #5511FF
+# set fg #EE1155
+# set xbg #DD6688
 put 􀶫  .github/assets/json2html.svg
 
 # 􀶪 􀶫
 # 􀳼 􀳽
 # 􂇲 􂇳
-# set bg #222233
 # set x 50
 # set y 50
-# set xbg #DD6688
 # set xbo 0
 
 #
