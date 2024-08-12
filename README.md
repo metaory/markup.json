@@ -16,7 +16,7 @@
 ---
 
 <div align="center">
-  <img alt="sample" width="80%" src="https://raw.githubusercontent.com/metaory/mini-json2html/master/.github/assets/sample.png">
+  <img alt="sample" width="80%" src="https://raw.githubusercontent.com/metaory/mini-json2html/master/.github/assets/preview.png">
 </div>
 
 ---
