@@ -1,24 +1,25 @@
-export default function (json) {
+
+export default function (arr) {
   let inner = ''
   let indent = ''
   function walk(nodes) {
     for (const node of nodes) {
-      const [tag, attributes, content] = node || []
+      const [tag, attributes, val] = node || []
       inner += `${indent}<${tag}`
       for (const attr in attributes) {
         inner += ` ${attr}="${attributes[attr]}"`
       }
-      if (content) {
+      if (val) {
         inner += '>'
-        if (Array.isArray(content)) {
-          const hasChildren = Array.isArray(content.at(0))
+        if (Array.isArray(val)) {
+          const hasChildren = Array.isArray(val.at(0))
           indent += '\t'
           inner += '\n'
-          walk((hasChildren && content) || [content])
+          walk((hasChildren && val) || [val])
           indent = indent.replace(/\t$/, '')
           inner += `${indent}</${tag}>\n`
         } else {
-          inner += `${content}</${tag}>\n`
+          inner += `${val}</${tag}>\n`
         }
       } else {
         inner += ' />\n'
@@ -26,7 +27,7 @@ export default function (json) {
     }
   }
 
-  walk(json)
+  walk(arr)
 
   return inner
 }

@@ -1,21 +1,13 @@
 #!/usr/bin/env node
 
+import { argv, stdin } from 'node:process'
+import { Readable } from 'node:stream'
+import assert from 'node:assert/strict'
 import transpile from './transpile.js'
 import validate from './validate.js'
-import { Readable } from 'node:stream'
-
-import {
-  argv,
-  stdin,
-  // stdout
-} from 'node:process'
 
 const [, , file] = argv
-
-if (file) {
-  console.log('TODO HANDLE FILE ARG', `<${file}>`)
-  process.exit(1)
-}
+if (file) assert.fail('FILE ARG NOT_IMPLEMENTED')
 
 const stream = stdin.resume()
 
@@ -23,12 +15,10 @@ if (stream.readable === false) process.exit()
 
 Readable.from(stream)
   .reduce(async (acc, cur) => (acc += cur), '')
+  .then(JSON.parse)
+  .catch(assert.ifError)
   .then(validate)
   .then(transpile)
   .then(console.log)
 
-
 process.on('SIGINT', process.exit)
-
-// readStream.isTTY
-// const raw = await Readable.from(stream).reduce(async (acc, cur) => (acc += cur), '')
