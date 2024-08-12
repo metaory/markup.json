@@ -18,7 +18,7 @@
           { "href": "foobar.com" },
           ["p", { "class": "hoge" }, "some text"]
         ],
-        ["i", { "class": "icon" }, "xorg"]
+        ["i", { "class": "ico", "x11": "xorg" }]
       ]
     ]
   ]

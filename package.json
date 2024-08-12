@@ -6,19 +6,34 @@
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
   "type": "module",
+  "sideEffects": false,
   "scripts": {
-    "build": "npx unbuild",
+    "build": "npx unbuild@rc",
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
     "test": "node --test --test-concurrency 1"
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
-    "./*": "./*"
+    "./cli": {
+      "import": {
+        "types": "./dist/cli.d.mts",
+        "default": "./dist/cli.mjs"
+      },
+      "require": {
+        "types": "./dist/cli.d.cts",
+        "default": "./dist/cli.cjs"
+      }
+    }
   },
   "bin": {
     "mini-json2html": "./dist/cli.mjs",

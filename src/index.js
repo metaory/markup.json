@@ -1,6 +1,4 @@
-const { log: l } = console
+import transpile from './transpile.js'
+import validate from './validate.js'
 
-l("J2H INIT")
-
-
-export const
+export default data => validate(data).then(transpile)

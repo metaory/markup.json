@@ -15,6 +15,12 @@
 
 ---
 
+<div align="center">
+  <img src=".github/assets/preview.png" width="80%"/>
+</div>
+
+---
+
 Library Usage
 -------------
 
@@ -32,18 +38,22 @@ pnpm add mini-json2html
   "content": [
     [
       "div",
-      {"align": "center", "class": "wrapper"},
+      { "align": "center", "class": "wrapper" },
       [
-        ["img", {"src": "example.com"}],
-        ["img", {"src": "google.com"}]
+        ["img", { "src": "example.com" }],
+        ["img", { "src": "google.com" }]
       ]
     ],
     [
       "footer",
-      {"class": "foot"},
+      { "class": "foot" },
       [
-        ["a", {"href": "foobar.com"}, ["p", {"class": "hoge"}, "some text"]],
-        ["i", {"class":"icon"}, "xorg"]
+        [
+          "a",
+          { "href": "foobar.com" },
+          ["p", { "class": "hoge" }, "some text"]
+        ],
+        ["i", { "class": "ico", "x11": "xorg" }]
       ]
     ]
   ]
@@ -52,7 +62,7 @@ pnpm add mini-json2html
 
 ```javascript
 import { readFile } from 'node:fs/promises'
-import { json2html } from 'mini-json2html'
+import json2html from 'mini-json2html'
 
 const { content } = JSON.parse(await readFile('./sample.json', { encoding: 'utf8' }))
 const html = json2html(content)
