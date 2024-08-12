@@ -1,6 +1,6 @@
 <div align="center">
   <h3>mini-json2html</h3>
-  <img src=".github/assets/json2html.svg" width="168px"/>
+  <img alt="logo" src="https://raw.githubusercontent.com/metaory/mini-json2html/master/.github/assets/json2html.svg" width="200px">
   <h4>Tiny JSON to HTML Transpiler</h4>
   <h5>Library and CLI</h5>
   <h4>with Zero dependencies</h4>
@@ -16,7 +16,7 @@
 ---
 
 <div align="center">
-  <img src=".github/assets/preview.png" width="80%"/>
+  <img alt="sample" width="80%" src="https://raw.githubusercontent.com/metaory/mini-json2html/master/.github/assets/sample.png">
 </div>
 
 ---

@@ -4,7 +4,11 @@ import transpile from './transpile.js'
 import validate from './validate.js'
 import { Readable } from 'node:stream'
 
-import { argv, stdin, stdout } from 'node:process'
+import {
+  argv,
+  stdin,
+  // stdout
+} from 'node:process'
 
 const [, , file] = argv
 

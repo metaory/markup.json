@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict'
+// import assert from 'node:assert/strict'
 import transpile from './transpile.js'
 
 export default function (raw) {
