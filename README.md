@@ -87,11 +87,12 @@ const html = json2html(content)
 
 CLI Installation
 ---------
+
 ```sh
-	# install globally
-	npm i -g mini-json2html
-	# or
-	pnpm add -g mini-json2html
+# install globally
+npm i -g mini-json2html
+# or
+pnpm add -g mini-json2html
 ```
 
 ---
