@@ -1,5 +1,5 @@
 {
-  "version": "0.1",
+  "lorem": "ipsum",
   "content": [
     [
       "div",
@@ -13,12 +13,8 @@
       "footer",
       { "class": "foot" },
       [
-        [
-          "a",
-          { "href": "foobar.com" },
-          ["p", { "class": "hoge" }, "some text"]
-        ],
-        ["i", { "class": "ico", "x11": "xorg" }]
+        ["a", { "href": "foobar.com" }, ["p", { "class": "hoge" }, "foo"]],
+        ["i", { "class": "icon", "x11": "xorg" }]
       ]
     ]
   ]
