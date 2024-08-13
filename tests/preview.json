@@ -1,0 +1,18 @@
+[
+  [
+    "div",
+    { "align": "center", "class": "wrapper" },
+    [
+      ["img", { "src": "example.com" }],
+      ["img", { "src": "google.com" }]
+    ]
+  ],
+  [
+    "footer",
+    { "class": "foot" },
+    [
+      ["a", { "href": "foobar.com" }, ["p", { "class": "hoge" }, "foo"]],
+      ["i", { "class": "icon", "x11": "xorg" }]
+    ]
+  ]
+]
