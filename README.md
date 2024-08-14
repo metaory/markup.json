@@ -140,6 +140,74 @@ json2html content.json
 
 ---
 
+Spec Draft
+----------
+
+#### Node
+
+
+Link with querystring / searchparams and a child node
+```js
+[
+  'a',
+  {
+    class: 'link',
+    href: [
+      'https://example.com/org/search?', {
+        name: 'acme',
+        location: 'SF'
+      }
+    ],
+  }, ['p', {class: 'faded'}, 'find']
+];
+```
+
+Span with arbitrary attribute and style object
+```js
+[
+  'span',
+  {
+    x11: 'xorg',
+    style: {
+      color: '#3311FF',
+      'box-shadow': 'var(--shadow-md)'
+    }
+  },
+  'vanish'
+];
+```
+
+Image with url search params in src attribute
+```js
+[
+  'img',
+  {
+    height: 220,
+    alt: 'logo',
+    src: [
+      'https://github-readme-stats.vercel.app/api?', {
+        username: 'acme',
+        border_radius: 30,
+        bg_color: 'bg_color=45,4400EE,5511FF'
+      }
+    ]
+  }
+];
+```
+
+
+Spec Draft Notes
+----------------
+
+
+> [!Note]
+> The values `"true"` and `"false"` are not allowed on boolean attributes.
+> To represent a false value, the attribute has to be omitted altogether.
+>
+> _ref:_ [2.3.2 Boolean attributes -- html.spec.whatwg.org](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
+
+
+
 License
 -------
 [MIT](LICENSE)
