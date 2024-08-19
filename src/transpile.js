@@ -1,33 +1,89 @@
+const LB = '\n'
+const TB = '\t'
+
+const foldString = (obj, sep = '&', eq = '=', pre = '') =>
+  pre +
+  Object.keys(obj)
+    .reduce((str, key) => (str += key + eq + obj[key] + sep), '')
+    .trim()
+
+const foldAttributes = attributes =>
+  Object.keys(attributes).reduce((acc, cur) => {
+    const val = attributes[cur]
+
+    acc += ` ${cur}="`
+
+    switch (val.constructor) {
+      case String:
+        acc += val
+        break
+      case Object:
+        acc += foldString(val, '; ')
+        break
+      case Array:
+        acc += foldString(val.at(1), '&', '=', val.at(0))
+        break
+    }
+    acc += '"'
+    return acc
+  }, '')
+
+const indent = n =>
+  Array(n < 0 ? 0 : n)
+    .fill(TB)
+    .join('')
 
 export default function (arr) {
-  let inner = ''
-  let indent = ''
-  function walk(nodes) {
+  let html = ''
+
+  function walk(nodes, depth = 0) {
     for (const node of nodes) {
-      const [tag, attributes, val] = node || []
-      inner += `${indent}<${tag}`
-      for (const attr in attributes) {
-        inner += ` ${attr}="${attributes[attr]}"`
+      const [tag, ...parts] = node || []
+
+      if (node.constructor === String) {
+        html += node
+        html += LB
+        continue
       }
-      if (val) {
-        inner += '>'
-        if (Array.isArray(val)) {
-          const hasChildren = Array.isArray(val.at(0))
-          indent += '\t'
-          inner += '\n'
-          walk((hasChildren && val) || [val])
-          indent = indent.replace(/\t$/, '')
-          inner += `${indent}</${tag}>\n`
-        } else {
-          inner += `${val}</${tag}>\n`
+
+      html += indent(depth)
+      html += '<'
+      html += tag
+
+      const [attributes = {}] = parts
+
+      if (attributes.constructor === Object) {
+        html += foldAttributes(attributes)
+        parts.shift()
+      }
+
+      if (!parts.length) {
+        html += ' />'
+        html += LB
+        continue
+      }
+
+      html += '>'
+      html += LB
+
+      for (const line of parts) {
+        if (typeof line !== 'object') {
+          html += indent(depth)
+          html += TB
+          html += line
+          html += LB
         }
-      } else {
-        inner += ' />\n'
+
+        if (Array.isArray(line)) walk([line], depth + 1)
       }
+
+      html += indent(depth)
+      html += `</${tag}>`
+      html += LB
     }
   }
 
   walk(arr)
 
-  return inner
+  return html
 }

@@ -1,0 +1,102 @@
+[
+  "```",
+  "foo",
+  "```",
+  [
+    "div",
+    { "align": "center" },
+    ["h1", "HTML.JSON"],
+    ["hr"],
+    ["h5", "HTML DOM tree representation in compact JSON"],
+    ["h4", "Library and CLI"],
+    ["h6", "zero dependencies"]
+  ],
+
+  ["h3", "Draft Spec"],
+
+  "Designed around Array indices",
+
+  "Every element is a new line",
+
+  "Array's first element is the TAG",
+
+  ["br"],
+
+  "Both Attribute and Value can be omitted",
+
+  ["p", { "class": "primary" }, "second element is the attribute object"],
+
+  ["em", "attributes are optional"],
+
+  ["em", "elements", "can have", "many children"],
+
+  ["em", "every child", "is a new line"],
+
+  "values are optional",
+
+  ["b", { "class": "opt" }],
+
+  [
+    "div",
+    { "class": "wrapper" },
+    "elements can",
+    "be nested",
+    ["span", "arrays as values are children"],
+    ["em", { "class": "fuga" }, "nested"],
+    ["p", "children can have", ["b", "children!"]]
+  ],
+
+  ["hr"],
+
+  "Attributes with primitive values are rendered as they are written",
+
+  ["br", { "foo": "bar", "x11": "xorg" }],
+
+  "Attributes with",
+  ["em", "Array"],
+  "or",
+  ["em", "Object"],
+  "are treated differently",
+
+  ["br"],
+
+  ["h4", "Attributes with Object as value"],
+
+  [
+    "div",
+    { "class": "wrapper", "style": { "color": "indigo", "margin": "12px" } },
+    "default behaviour for any attribute with object as value",
+    "is to fold the object with",
+    "semicolon as delimiter",
+    "and equal sign to delimit keys and values"
+  ],
+
+  ["h4", "Attributes with Array as value"],
+  [
+    "a",
+    {
+      "src": [
+        "https://github.com/search?",
+        {
+          "q": "json",
+          "type": "repositories",
+          "p": 2
+        }
+      ]
+    }
+  ],
+
+  "Attributes with array values are querystrings",
+  "the first element is a prefix and the following object the query params",
+
+  ["span", "bare val with no attr"],
+  ["span", "multi bare val with no attr", "moremore"],
+  ["span", { "id": "bare", "class": "huh" }, "bare value with attr"],
+  ["span", { "id": "multi-bWattr" }, "multi bare value with attr", "morewithtth"],
+
+  ["span", { "id": "nested" }, "next is BIG", ["h1", "HEAD"]],
+  ["span", { "id": "foo" }, "okk", ["h3", ["p", "deep"]], ["h2", "TITLE"]],
+
+  ["a", { "href": ["https://acme.com/search?", { "user": "void", "org": "nada" }] }],
+  ["button", { "style": { "color": "indigo", "margin": "12px" }, "class": "btn" }, "GOGO"]
+]

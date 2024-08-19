@@ -1,0 +1,122 @@
+```
+foo
+```
+<div align="center">
+	<h1>
+		HTML.JSON
+	</h1>
+	<hr />
+	<h5>
+		HTML DOM tree representation in compact JSON
+	</h5>
+	<h4>
+		Library and CLI
+	</h4>
+	<h6>
+		zero dependencies
+	</h6>
+</div>
+<h3>
+	Draft Spec
+</h3>
+Designed around Array indices
+Every element is a new line
+Array's first element is the TAG
+<br />
+Both Attribute and Value can be omitted
+<p class="primary">
+	second element is the attribute object
+</p>
+<em>
+	attributes are optional
+</em>
+<em>
+	elements
+	can have
+	many children
+</em>
+<em>
+	every child
+	is a new line
+</em>
+values are optional
+<b class="opt" />
+<div class="wrapper">
+	elements can
+	be nested
+	<span>
+		arrays as values are children
+	</span>
+	<em class="fuga">
+		nested
+	</em>
+	<p>
+		children can have
+		<b>
+			children!
+		</b>
+	</p>
+</div>
+<hr />
+Attributes with primitive values are rendered as they are written
+<br foo="bar" x11="xorg" />
+Attributes with
+<em>
+	Array
+</em>
+or
+<em>
+	Object
+</em>
+are treated differently
+<br />
+<h4>
+	Attributes with Object as value
+</h4>
+<div class="wrapper" style="color=indigo; margin=12px;">
+	default behaviour for any attribute with object as value
+	is to fold the object with
+	semicolon as delimiter
+	and equal sign to delimit keys and values
+</div>
+<h4>
+	Attributes with Array as value
+</h4>
+<a src="https://github.com/search?q=json&type=repositories&p=2&" />
+Attributes with array values are querystrings
+the first element is a prefix and the following object the query params
+<span>
+	bare val with no attr
+</span>
+<span>
+	multi bare val with no attr
+	moremore
+</span>
+<span id="bare" class="huh">
+	bare value with attr
+</span>
+<span id="multi-bWattr">
+	multi bare value with attr
+	morewithtth
+</span>
+<span id="nested">
+	next is BIG
+	<h1>
+		HEAD
+	</h1>
+</span>
+<span id="foo">
+	okk
+	<h3>
+		<p>
+			deep
+		</p>
+	</h3>
+	<h2>
+		TITLE
+	</h2>
+</span>
+<a href="https://acme.com/search?user=void&org=nada&" />
+<button style="color=indigo; margin=12px;" class="btn">
+	GOGO
+</button>

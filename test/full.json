@@ -1,0 +1,26 @@
+[
+  ["span", "bare val with no attr"],
+  ["span", "multi bare val with no attr", "moremore"],
+  ["span", { "id": "bWattr" }, "bare value with attr"],
+  ["span", { "id": "multi-bWattr" }, "multi bare value with attr", "morewithtth"],
+  [
+    "span",
+    { "id": "multi-nested-bWattr" },
+    "multi bare value with attr",
+    "morewithtth",
+    ["img", { "src": "zxcy" }, "zz"]
+  ],
+  [
+    "div",
+    { "align": "center", "class": "wrapper" },
+    ["img", { "src": "example.com" }],
+    ["img", { "src": "google.com" }, "xval"]
+  ],
+  ["footer", ["i", { "class": "icon", "x11": "xorg" }]],
+  [
+    "p",
+    { "id": "myp" },
+    ["a", { "href": "foobar.com" }, ["p", { "class": "hoge" }, "foo"]],
+    ["i", { "class": "icon", "x11": "xorg" }]
+  ]
+]
