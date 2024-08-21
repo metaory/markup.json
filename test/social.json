@@ -1,0 +1,25 @@
+[
+  "Hello🔸World 🦊",
+  [
+    "div",
+    { "align": "center", "id": "hoge", "data-planet-id": "92432" },
+    [
+      "h1",
+      {
+        "class": "primary",
+        "style": { "color": "indigo", "background": "fuchsia" }
+      },
+      "HͲML.json"
+    ],
+    ["hr"],
+    "a very simple",
+    "DOM tree",
+    ["h4", "representation", "🔹 in compact JSON 🔹"],
+    [
+      "a",
+      { "class": "primary", "href": ["search?", { "q": "foo", "type": "bar" }] },
+      "🔥 First Class Attribute Strings"
+    ]
+  ],
+  ["footer", "draft spec 0.6"]
+]

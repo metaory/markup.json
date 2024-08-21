@@ -1,0 +1,21 @@
+[
+  [
+    "h4",
+    ["code", "🦊 HͲML.json"],
+    "DOM tree representation",
+    "in compact JSON"
+  ],
+  ["hr"],
+  [
+    "a",
+    {
+      "align": "center",
+      "class": "xyz",
+      "data-planet-id": "92432",
+      "href": ["search?", { "q": "foo", "type": "bar" }],
+      "style": { "color": "red", "background": "indigo" }
+    },
+    "🔥 First Class Attribute Strings"
+  ],
+  "draft spec 0.6"
+]

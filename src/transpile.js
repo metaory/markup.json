@@ -18,7 +18,7 @@ const foldAttributes = attributes =>
         acc += val
         break
       case Object:
-        acc += foldString(val, '; ')
+        acc += foldString(val, '; ', ':')
         break
       case Array:
         acc += foldString(val.at(1), '&', '=', val.at(0))

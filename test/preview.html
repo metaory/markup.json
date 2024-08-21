@@ -1,24 +1,16 @@
-```
-foo
-```
 <div align="center">
 	<h1>
-		HTML.JSON
+		MARKUP.json
 	</h1>
 	<hr />
 	<h5>
 		HTML DOM tree representation in compact JSON
 	</h5>
-	<h4>
-		Library and CLI
-	</h4>
-	<h6>
-		zero dependencies
-	</h6>
+	<h3>
+		First Class Support for Attributes String
+	</h3>
 </div>
-<h3>
-	Draft Spec
-</h3>
+<hr />
 Designed around Array indices
 Every element is a new line
 Array's first element is the TAG
@@ -41,7 +33,32 @@ Both Attribute and Value can be omitted
 </em>
 values are optional
 <b class="opt" />
-<div class="wrapper">
+<hr />
+Attributes with
+<em>
+	Array
+</em>
+or
+<em>
+	Object
+</em>
+are treated differently
+<br />
+<h4>
+	Array Attributes
+</h4>
+<a class="link" href="https://github.com/search?q=html.json&type=repositories&">
+	Attributes with Array as value
+	joined with
+	<em>
+		semicolon
+	</em>
+	and equal sign to delimit keys and values
+</a>
+<h4>
+	Object Attributes
+</h4>
+<div class="wrapper" style="color:indigo; background:fuchsia;">
 	elements can
 	be nested
 	<span>
@@ -60,63 +77,3 @@ values are optional
 <hr />
 Attributes with primitive values are rendered as they are written
 <br foo="bar" x11="xorg" />
-Attributes with
-<em>
-	Array
-</em>
-or
-<em>
-	Object
-</em>
-are treated differently
-<br />
-<h4>
-	Attributes with Object as value
-</h4>
-<div class="wrapper" style="color=indigo; margin=12px;">
-	default behaviour for any attribute with object as value
-	is to fold the object with
-	semicolon as delimiter
-	and equal sign to delimit keys and values
-</div>
-<h4>
-	Attributes with Array as value
-</h4>
-<a src="https://github.com/search?q=json&type=repositories&p=2&" />
-Attributes with array values are querystrings
-the first element is a prefix and the following object the query params
-<span>
-	bare val with no attr
-</span>
-<span>
-	multi bare val with no attr
-	moremore
-</span>
-<span id="bare" class="huh">
-	bare value with attr
-</span>
-<span id="multi-bWattr">
-	multi bare value with attr
-	morewithtth
-</span>
-<span id="nested">
-	next is BIG
-	<h1>
-		HEAD
-	</h1>
-</span>
-<span id="foo">
-	okk
-	<h3>
-		<p>
-			deep
-		</p>
-	</h3>
-	<h2>
-		TITLE
-	</h2>
-</span>
-<a href="https://acme.com/search?user=void&org=nada&" />
-<button style="color=indigo; margin=12px;" class="btn">
-	GOGO
-</button>
