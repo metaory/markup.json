@@ -1,7 +1,7 @@
 {
   "name": "markup.json",
   "description": "HTML DOM tree representation in compact JSON -- Draft Spec, Library and CLI",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "module": "./dist/index.mjs",
@@ -45,8 +45,7 @@
     "dist",
     "LICENSE"
   ],
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "metaory <metaory@gmail.com>",
   "license": "MIT"
 }
