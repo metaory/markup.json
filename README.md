@@ -1,6 +1,6 @@
 <div align="center">
 	<h1>
-		MARKUP.json
+		mʌrκup.json
 	</h1>
   <img alt="logo" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/markup.svg" width="200px">
 	<hr />
@@ -51,23 +51,20 @@ cat tests/mini.json
 
 ```json
 [
-  "Hello World 🦊",
-  ["h1", "MARKUP.json"],
-  ["hr"],
-  "DOM tree",
-  ["h4", "representation", "in compact JSON"],
+  ["h1", "mʌrκup.json"],
+  ["br"],
+  ["h4", "DOM tree", "representation", "in compact JSON"],
   [
     "a",
     {
-      "align": "center",
       "class": "primary",
       "data-planet-id": "92432",
       "href": ["search?", { "q": "foo", "type": "bar" }],
-      "id": "hoge",
       "style": { "color": "indigo", "background": "fuchsia" }
     },
     "🔥 First Class Attribute Strings"
-  ]
+  ],
+  "draft spec 0.7"
 ]
 ```
 
@@ -85,23 +82,24 @@ const html = markup(content)
 ```
 
 ```html
-Hello World 🦊
-<h1>MARKUP.json</h1>
-<hr />
-DOM tree
+<h1>
+	mʌrκup.json
+</h1>
+<br />
 <h4>
-  representation
-  in compact JSON
+	DOM tree
+	representation
+	in compact JSON
 </h4>
-<a align="center"
-   class="primary"
-   data-planet-id="92432"
-   href="search?q=foo&type=bar&"
-   id="hoge"
-   style="color:indigo; background:fuchsia;"
+<a
+  class="primary"
+  data-planet-id="92432"
+  href="search?q=foo&type=bar&"
+  style="color:indigo; background:fuchsia;"
 >
-  🔥 First Class Attribute Strings
+	🔥 First Class Attribute Strings
 </a>
+draft spec 0.7
 ```
 
 ---
