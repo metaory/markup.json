@@ -30,7 +30,8 @@ Designed around Array indices
 
 
 > [!Tip]
-> Most of this readme is created from [test/preview.json]
+> Most of this readme is created from
+> [test/preview.json](https://github.com/metaory/markup.json/blob/master/test/preview.json)
 
 ---
 
