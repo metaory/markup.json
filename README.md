@@ -157,80 +157,131 @@ markup content.json
 # npx markup.json sample.json
 ```
 
----
-
-Spec Draft
+Type Draft
 ----------
 
-Every element is a new line
-Array's first element is the TAG
-<br />
-Both Attribute and Value can be omitted
-<p class="primary">
-	second element is the attribute object
-</p>
-<em>
-	attributes are optional
-</em>
-<em>
-	elements
-	can have
-	many children
-</em>
-<em>
-	every child
-	is a new line
-</em>
-values are optional
-<b class="opt" />
-<hr />
-Attributes with
-<em>
-	Array
-</em>
-or
-<em>
-	Object
-</em>
-are treated differently
-<br />
-<h4>
-	Array Attributes
-</h4>
-<a class="link" href="https://github.com/search?q=html.json&type=repositories&">
-	Attributes with Array as value
-	joined with
-	<em>
-		semicolon
-	</em>
-	and equal sign to delimit keys and values
+```ts
+type Tag = string
+
+type primitive = string | number | boolean
+
+type AttributeString = [string, { [k: string]: primitive }]
+
+type Attribute =
+  | {
+      [k: string]: primitive | AttributeString
+    }
+  | primitive
+
+type Node = [Tag, Attribute?, ...primitive[]]
+```
+
+##### Primitive Attribute values
+Attributes with Primitive values are rendered as is;
+```json
+[
+  "button",
+  { class: "primary btn", name: "xorg" },
+  "hi",
+  "main btn"
+]
+```
+
+```html
+<button class="primary btn" name="xorg" >
+  hi
+  main btn
+</button>
+```
+
+##### Attribute with Object values
+
+Attributes with Object values are folded,
+delimit key and value pairs with `;`
+delimit keys and values with `:`
+
+```json
+[
+  "span",
+  {
+    "class": "secondary",
+    "style": { "color": "indigo", "background": "fuchsia" },
+    "anything": { "name": "etc", "planet": "8e81" }
+  },
+  "Object values",
+  "xorg"
+]
+```
+
+```html
+<span class="secondary"
+      style="color:indigo; background:fuchsia;"
+      anything="name:etc; planet:8e81;">
+  Object values
+  xorg
+</span>
+```
+
+##### Attribute with Array values
+
+Attributes with Object values are folded,
+delimit key and value pairs with `;`
+delimit keys and values with `:`
+
+```json
+[
+  "a",
+  {
+    "class": "secondary",
+    "href": [
+      "https://github.com/search",
+      { "q": "markup", "type": "repositories", "l": "Lua" }
+    ]
+  },
+  "go",
+  "find repos"
+]
+```
+```html
+<a class="secondary"
+   href="https://github.com/searchq=markup&type=repositories&l=Lua&">
+  go
+  find repos
 </a>
-<h4>
-	Object Attributes
-</h4>
-<div class="wrapper" style="color:indigo; background:fuchsia;">
-	elements can
-	be nested
-	<span>
-		arrays as values are children
-	</span>
-	<em class="fuga">
-		nested
-	</em>
-	<p>
-		children can have
-		<b>
-			children!
-		</b>
-	</p>
-</div>
-<hr />
-Attributes with primitive values are rendered as they are written
-<br foo="bar" x11="xorg" />
+```
+
+```json
+[
+  "img",
+  {
+    "width": "80%",
+    "alt": "stats",
+    "src": [
+      "https://github-readme-stats.vercel.app/api?",
+      {
+        "username": "metaory",
+        "ring_color": "5522CC",
+        "text_color": "44BBFF",
+        "border_radius": 30,
+        "hide_title": true,
+        "hide_rank": false,
+        "show_icons": true
+      }
+    ]
+  }
+]
+```
+
+```html
+<img width="80%"
+     alt="stats"
+     src="https://github-readme-stats.vercel.app/api?username=metaory&ring_color=5522CC&text_color=44BBFF&border_radius=30&hide_title=true&hide_rank=false&show_icons=true&" />
+```
+---
 
 
-Spec Draft Notes
-----------------
+Draft Notes
+-----------
 
 
 > [!Note]

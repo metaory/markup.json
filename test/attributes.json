@@ -1,0 +1,41 @@
+[
+  ["button", { "class": "primary btn", "name": "xorg" }, "hi", "main btn"],
+  [
+    "span",
+    {
+      "class": "secondary",
+      "style": { "color": "indigo", "background": "fuchsia" },
+      "anything": { "name": "etc", "planet": "8e81" }
+    },
+    "Object values",
+    "xorg"
+  ],
+  [
+    "a",
+    {
+      "class": "secondary",
+      "href": ["https://github.com/search", { "q": "markup", "type": "repositories", "l": "Lua" }]
+    },
+    "go",
+    "find repos"
+  ],
+  [
+    "img",
+    {
+      "width": "80%",
+      "alt": "stats",
+      "src": [
+        "https://github-readme-stats.vercel.app/api?",
+        {
+          "username": "metaory",
+          "ring_color": "5522CC",
+          "text_color": "44BBFF",
+          "border_radius": 30,
+          "hide_title": true,
+          "hide_rank": false,
+          "show_icons": true
+        }
+      ]
+    }
+  ]
+]
