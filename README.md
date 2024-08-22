@@ -68,10 +68,6 @@ cat tests/mini.json
 ]
 ```
 
-```sh
-markup < tests/sample.json
-```
-
 ```javascript
 import { readFile } from 'node:fs/promises'
 import markup from 'markup.json'
@@ -119,13 +115,12 @@ pnpm add -g markup.json
 CLI Synopsis
 ------------
 
-	markup.json [-]|FILE
+	markup [-]|FILE [FILE]
 
 
 Reads input from **standard input** or **FILE**
-The `-` is optional pointing to `stdin`
 
-Writes the output to `stdout`
+Writes to `stdout` or FILE
 
 
 ---
@@ -133,28 +128,32 @@ Writes the output to `stdout`
 CLI Usage
 ---------
 
-Read input from `stdin` and write result to `stdout`
-
 ```sh
-cat content.json | markup
+# read input and output path from args
+	 markup [FILE] [FILE]
+	 markup tpl.json index.html
+
+# read input path from args
+# write output to standard output
+	 markup [FILE]
+	 markup tpl.json
+	 markup tpl.json > index.html
+
+# read input from standard input
+# write output to standard output
+	 cat FILE | markup
+	 cat tpl.json | markup
+	 cat tpl.json | markup > index.html
+
+# read from file descriptor
+# write output to standard output
+	 markup < FILE
+	 markup < tpl.json
+	 markup < tpl.json > index.html
 ```
 
-Select and pipe a node with `jq` and redirect results to file
-
 ```sh
-# pipe json input and write result to a file
-jq '.content' < tests/sample.json | markup > output.html
-```
-
-Read input from `argument` and write result to `stdout`
-
-```sh
-markup content.json
-```
-
-```sh
-# npx not tested
-# npx markup.json sample.json
+npx markup sample.json
 ```
 
 Type Draft

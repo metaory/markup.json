@@ -1,27 +1,43 @@
 #!/usr/bin/env node
 
-import { argv, stdin } from 'node:process'
+import { argv, stdin, stdout } from 'node:process'
+import { readFile, writeFile } from 'node:fs/promises'
 import { Readable } from 'node:stream'
-import assert from 'node:assert/strict'
+import { ansi, usage } from './help.js'
 import transpile from './transpile.js'
 import validate from './validate.js'
-import { name } from '../package.json'
 
-process.title = name
+process.title = 'markup'
 
-const [, , file] = argv
-if (file) assert.fail('FILE ARG NOT_IMPLEMENTED')
+const fail = (err = 'NA') => {
+  ansi.b1(' ERROR ')
+  ansi.f1('\n', err.message || err)
 
-const stream = stdin.resume()
+  usage()
+  process.exit(1)
+}
 
-if (stream.readable === false) process.exit()
+const readArg = () => {
+  const [, , file] = argv
 
-Readable.from(stream)
-  .reduce(async (acc, cur) => (acc += cur), '')
+  if (!file) fail('NO FILE ARGUMENT or STANDARD INPUT')
+
+  return readFile(file, { encoding: 'utf8' })
+}
+
+const readStream = () => {
+  const stream = stdin.resume()
+
+  if (stream.readable === false) fail('STREAM IS NOT READABLE')
+
+  return Readable.from(stream).reduce((acc, cur) => (acc += cur), '')
+}
+
+;(stdin.isTTY ? readArg : readStream)()
   .then(JSON.parse)
   .then(validate)
   .then(transpile)
-  .then(console.log)
-  .catch(err => process.stderr.write(err.toString()))
+  .then(html => (stdin.isTTY && argv[3] ? writeFile(argv[3], html) : stdout.write(html)))
+  .catch(fail)
 
-process.on('SIGINT', process.exit)
+process.on('SIGINT', fail)
