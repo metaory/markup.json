@@ -181,7 +181,7 @@ Attributes with Primitive values are rendered as is;
 ```json
 [
   "button",
-  { class: "primary btn", name: "xorg" },
+  { "class": "primary btn", "name": "xorg" },
   "hi",
   "main btn"
 ]
