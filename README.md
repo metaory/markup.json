@@ -168,12 +168,12 @@ type primitive = string | number | boolean
 type AttributeString = [string, { [k: string]: primitive }]
 
 type Attribute =
-  | {
-      [k: string]: primitive | AttributeString
-    }
+  | { [k: string]: primitive | AttributeString | object }
   | primitive
 
-type Node = [Tag, Attribute?, ...primitive[]]
+type Node = [Tag, Attribute?, ...primitive[]] | string
+
+type Markup = Node[]
 ```
 
 ##### Primitive Attribute values
@@ -196,7 +196,7 @@ Attributes with Primitive values are rendered as is;
 
 ##### Attribute with Object values
 
-Attributes with Object values are folded,
+Attributes with Object values are folded
 delimit key and value pairs with `;`
 delimit keys and values with `:`
 
@@ -224,9 +224,9 @@ delimit keys and values with `:`
 
 ##### Attribute with Array values
 
-Attributes with Object values are folded,
-delimit key and value pairs with `;`
-delimit keys and values with `:`
+Attributes with Object values are folded
+delimit key and value pairs with `&`
+delimit keys and values with `=`
 
 ```json
 [
