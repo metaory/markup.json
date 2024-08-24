@@ -51,7 +51,7 @@ cat tests/mini.json
 
 ```json
 [
-  ["h1", "mʌrκup.json"],
+  ["h1", "marκup.json"],
   ["br"],
   ["h4", "DOM tree", "representation", "in compact JSON"],
   [
@@ -79,7 +79,7 @@ const html = markup(content)
 
 ```html
 <h1>
-	mʌrκup.json
+	marκup.json
 </h1>
 <br />
 <h4>

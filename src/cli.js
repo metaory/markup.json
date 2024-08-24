@@ -33,11 +33,13 @@ const readStream = () => {
   return Readable.from(stream).reduce((acc, cur) => (acc += cur), '')
 }
 
+const write = html => (stdin.isTTY && argv[3] ? writeFile(argv[3], html) : stdout.write(html))
+
 ;(stdin.isTTY ? readArg : readStream)()
   .then(JSON.parse)
   .then(validate)
   .then(transpile)
-  .then(html => (stdin.isTTY && argv[3] ? writeFile(argv[3], html) : stdout.write(html)))
+  .then(write)
   .catch(fail)
 
 process.on('SIGINT', fail)
