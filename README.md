@@ -27,8 +27,8 @@
 > [!Tip]
 > Here are some usage examples
 >
-> [github.com/metaory/metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
-> [github.com/metaory/hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
+> - [github.com/metaory/metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
+> - [github.com/metaory/hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
 
 ---
 
