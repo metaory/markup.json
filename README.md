@@ -12,12 +12,8 @@
 	</h3>
 </div>
 <hr />
-Designed around Array indices
 
----
-
-> [!Caution]
-> 🚧  Under Development
+### Designed around Array indices
 
 ---
 
@@ -28,10 +24,11 @@ Designed around Array indices
 
 ---
 
-
 > [!Tip]
-> Most of this readme is created from
-> [test/preview.json](https://github.com/metaory/markup.json/blob/master/test/preview.json)
+> Here are some usage examples
+>
+> [github.com/metaory/metaory/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
+> [github.com/metaory/hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
 
 ---
 
@@ -74,7 +71,6 @@ import markup from 'markup.json'
 
 const content = JSON.parse(await readFile('./mini.json', { encoding: 'utf8' }))
 const html = markup(content)
-
 ```
 
 ```html
@@ -90,7 +86,7 @@ const html = markup(content)
 <a
   class="primary"
   data-planet-id="92432"
-  href="search?q=foo&type=bar&"
+  href="search?q=foo&type=bar"
   style="color:indigo; background:fuchsia;"
 >
 	🔥 First Class Attribute Strings
@@ -108,6 +104,9 @@ CLI Installation
 npm i -g markup.json
 # or
 pnpm add -g markup.json
+
+# or with npx
+npx markup.json
 ```
 
 ---
@@ -132,32 +131,37 @@ CLI Usage
 # read input and output path from args
 	 markup [FILE] [FILE]
 	 markup tpl.json index.html
+	 # or with npx
+	 npx markup.json tpl.json index.html
 
 # read input path from args
 # write output to standard output
 	 markup [FILE]
 	 markup tpl.json
 	 markup tpl.json > index.html
+	 # or with npx
+	 npx markup.json tpl.json > index.html
 
 # read input from standard input
 # write output to standard output
 	 cat FILE | markup
 	 cat tpl.json | markup
 	 cat tpl.json | markup > index.html
+	 # or with npx
+	 cat tpl.json | npx markup.json > index.html
 
 # read from file descriptor
 # write output to standard output
 	 markup < FILE
 	 markup < tpl.json
 	 markup < tpl.json > index.html
+	 # or with npx
+	 npx markup.json < tpl.json > index.html
 ```
 
-```sh
-npx markup sample.json
-```
 
-Type Draft
-----------
+Types
+-----
 
 ```ts
 type Tag = string
@@ -175,23 +179,38 @@ type Node = [Tag, Attribute?, ...primitive[]] | string
 type Markup = Node[]
 ```
 
+---
+
 ##### Primitive Attribute values
 Attributes with Primitive values are rendered as is;
 ```json
 [
-  "button",
-  { "class": "primary btn", "name": "xorg" },
-  "hi",
-  "main btn"
+  [
+    "button",
+    {
+      "class": "primary btn",
+      "name": "xorg"
+    },
+    "hi",
+    ["b", "main"],
+    "btn",
+    "here"
+  ]
 ]
 ```
 
 ```html
-<button class="primary btn" name="xorg" >
+<button
+  class="primary btn"
+  name="xorg"
+>
   hi
-  main btn
+  <b> main </b>
+  btn here
 </button>
 ```
+
+---
 
 ##### Attribute with Object values
 
@@ -201,25 +220,41 @@ delimit keys and values with `:`
 
 ```json
 [
-  "span",
-  {
-    "class": "secondary",
-    "style": { "color": "indigo", "background": "fuchsia" },
-    "anything": { "name": "etc", "planet": "8e81" }
-  },
-  "Object values",
-  "xorg"
+  ["h4", "Attribute with Object values"],
+  [
+    "span",
+    {
+      "class": "secondary",
+      "style": {
+        "color": "indigo",
+        "background": "fuchsia"
+      },
+      "anything": {
+        "name": "etc",
+        "planet": "8e81"
+      }
+    },
+    "Object values",
+    ["b", "x11"],
+    "xorg"
+  ]
 ]
 ```
 
 ```html
-<span class="secondary"
-      style="color:indigo; background:fuchsia;"
-      anything="name:etc; planet:8e81;">
+<h4>Attribute with Object values</h4>
+<span
+  class="secondary"
+  style="color: indigo; background: fuchsia"
+  anything="name:etc; planet:8e81;"
+>
   Object values
+  <b> x11 </b>
   xorg
 </span>
 ```
+
+---
 
 ##### Attribute with Array values
 
@@ -229,66 +264,78 @@ delimit keys and values with `=`
 
 ```json
 [
-  "a",
-  {
-    "class": "secondary",
-    "href": [
-      "https://github.com/search",
-      { "q": "markup", "type": "repositories", "l": "Lua" }
-    ]
-  },
-  "go",
-  "find repos"
+  ["h4", "Attribute with Array values"],
+  [
+    "a",
+    {
+      "class": "secondary",
+      "href": [
+        "github.com/search?",
+        {
+          "q": "markup",
+          "type": "repositories",
+          "l": "Lua"
+        }
+      ]
+    },
+    "go",
+    ["b", "find"],
+    "repos"
+  ]
 ]
 ```
 ```html
-<a class="secondary"
-   href="https://github.com/searchq=markup&type=repositories&l=Lua&">
+<h4>Attribute with Array values</h4>
+<a
+  class="secondary"
+  href="github.com/search?q=markup&type=repositories&l=Lua"
+>
   go
-  find repos
+  <b> find </b>
+  repos
 </a>
 ```
 
 ```json
 [
-  "img",
-  {
-    "width": "80%",
-    "alt": "stats",
-    "src": [
-      "https://github-readme-stats.vercel.app/api?",
-      {
-        "username": "metaory",
-        "ring_color": "5522CC",
-        "text_color": "44BBFF",
-        "border_radius": 30,
-        "hide_title": true,
-        "hide_rank": false,
-        "show_icons": true
-      }
-    ]
-  }
+  [
+    "img",
+    {
+      "width": "80%",
+      "alt": "stats",
+      "src": [
+        "github-readme-stats.vercel.app/api?",
+        {
+          "username": "metaory",
+          "ring_color": "5522CC",
+          "text_color": "44BBFF",
+          "border_radius": 30,
+          "hide_title": true,
+          "hide_rank": false,
+          "show_icons": true
+        }
+      ]
+    }
+  ]
 ]
 ```
 
 ```html
 <img width="80%"
      alt="stats"
-     src="https://github-readme-stats.vercel.app/api?username=metaory&ring_color=5522CC&text_color=44BBFF&border_radius=30&hide_title=true&hide_rank=false&show_icons=true&" />
+     src="github-readme-stats.vercel.app/api?username=metaory&ring_color=5522CC&text_color=44BBFF&border_radius=30&hide_title=true&hide_rank=false&show_icons=true" />
 ```
----
 
+---
 
 Draft Notes
 -----------
-
 
 > [!Note]
 > The values `"true"` and `"false"` are not allowed on boolean attributes.
 > To represent a false value, the attribute has to be omitted altogether.
 >
 > _ref:_ [2.3.2 Boolean attributes -- html.spec.whatwg.org](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
-
 
 
 License
