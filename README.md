@@ -27,7 +27,7 @@
 > [!Tip]
 > Here are some usage examples
 >
-> [github.com/metaory/metaory/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
+> [github.com/metaory/metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
 > [github.com/metaory/hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
 
 ---
@@ -56,12 +56,21 @@ cat tests/mini.json
     {
       "class": "primary",
       "data-planet-id": "92432",
-      "href": ["search?", { "q": "foo", "type": "bar" }],
-      "style": { "color": "indigo", "background": "fuchsia" }
+      "href": [
+        "search?",
+        {
+          "q": "foo",
+          "type": "bar"
+        }
+      ],
+      "style": {
+        "color": "indigo",
+        "background": "fuchsia"
+      }
     },
     "🔥 First Class Attribute Strings"
   ],
-  "draft spec 0.7"
+  "spec 0.7"
 ]
 ```
 
@@ -74,24 +83,20 @@ const html = markup(content)
 ```
 
 ```html
-<h1>
-	marκup.json
-</h1>
+<h1>marκup.json</h1>
 <br />
 <h4>
-	DOM tree
-	representation
-	in compact JSON
+  DOM tree
+  representation
+  in compact JSON
 </h4>
-<a
-  class="primary"
-  data-planet-id="92432"
-  href="search?q=foo&type=bar"
-  style="color:indigo; background:fuchsia;"
->
-	🔥 First Class Attribute Strings
+<a class="primary"
+   data-planet-id="92432"
+   href="search?q=foo&type=bar"
+   style="color:indigo; background:fuchsia">
+    🔥 First Class Attribute Strings
 </a>
-draft spec 0.7
+spec 0.7
 ```
 
 ---
@@ -128,35 +133,35 @@ CLI Usage
 ---------
 
 ```sh
-# read input and output path from args
-	 markup [FILE] [FILE]
-	 markup tpl.json index.html
-	 # or with npx
-	 npx markup.json tpl.json index.html
+  # read input and output path from args
+markup [FILE] [FILE]
+markup tpl.json index.html
+    # or with npx
+npx markup.json tpl.json index.html
 
-# read input path from args
-# write output to standard output
-	 markup [FILE]
-	 markup tpl.json
-	 markup tpl.json > index.html
-	 # or with npx
-	 npx markup.json tpl.json > index.html
+  # read input path from args
+  # write output to standard output
+markup [FILE]
+markup tpl.json
+markup tpl.json > index.html
+    # or with npx
+npx markup.json tpl.json > index.html
 
-# read input from standard input
-# write output to standard output
-	 cat FILE | markup
-	 cat tpl.json | markup
-	 cat tpl.json | markup > index.html
-	 # or with npx
-	 cat tpl.json | npx markup.json > index.html
+  # read input from standard input
+  # write output to standard output
+cat FILE | markup
+cat tpl.json | markup
+cat tpl.json | markup > index.html
+    # or with npx
+cat tpl.json | npx markup.json > index.html
 
-# read from file descriptor
-# write output to standard output
-	 markup < FILE
-	 markup < tpl.json
-	 markup < tpl.json > index.html
-	 # or with npx
-	 npx markup.json < tpl.json > index.html
+  # read from file descriptor
+  # write output to standard output
+markup < FILE
+markup < tpl.json
+markup < tpl.json > index.html
+    # or with npx
+npx markup.json < tpl.json > index.html
 ```
 
 
