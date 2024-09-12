@@ -28,10 +28,7 @@ const foldAttributes = attributes =>
     return acc
   }, '')
 
-const indent = n =>
-  Array(n < 0 ? 0 : n)
-    .fill(TB)
-    .join('')
+const indent = n => Array(n).fill(TB).join('')
 
 export default function (arr) {
   let html = ''
