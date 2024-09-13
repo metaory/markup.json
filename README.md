@@ -25,7 +25,7 @@
 ---
 
 > [!Tip]
-> Here are some usage examples
+> Here are some real usage examples
 >
 > - [github.com/metaory/metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
 > - [github.com/metaory/hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
@@ -42,25 +42,33 @@ npm install markup.json
 pnpm add markup.json
 ```
 
+---
+
 ```sh
-cat tests/mini.json
+cat .github/preview.json
 ```
 
 ```json
 [
   ["h1", "marκup.json"],
-  ["br"],
-  ["h4", "DOM tree", "representation", "in compact JSON"],
+  ["hr"],
+  [
+    "h4",
+    "DOM tree",
+    "representation in",
+    ["i", "compact"],
+    "JSON"
+  ],
   [
     "a",
     {
       "class": "primary",
       "data-planet-id": "92432",
       "href": [
-        "search?",
+        "github.com/search?",
         {
-          "q": "foo",
-          "type": "bar"
+          "q": "markup",
+          "type": "repositories"
         }
       ],
       "style": {
@@ -70,7 +78,9 @@ cat tests/mini.json
     },
     "🔥 First Class Attribute Strings"
   ],
-  "spec 0.7"
+  "Spec",
+  "CLI",
+  "Library"
 ]
 ```
 
@@ -83,20 +93,29 @@ const html = markup(content)
 ```
 
 ```html
-<h1>marκup.json</h1>
-<br />
+<h1>
+  marκup.json
+</h1>
+<hr />
 <h4>
   DOM tree
-  representation
-  in compact JSON
+  representation in
+  <i>
+    compact
+  </i>
+  JSON
 </h4>
-<a class="primary"
-   data-planet-id="92432"
-   href="search?q=foo&type=bar"
-   style="color:indigo; background:fuchsia">
-    🔥 First Class Attribute Strings
+<a
+  class="primary"
+  data-planet-id="92432"
+  href="github.com/search?q=markup&type=repositories"
+  style="color: indigo; background: fuchsia;"
+>
+  🔥 First Class Attribute Strings
 </a>
-spec 0.7
+Spec
+CLI
+Library
 ```
 
 ---

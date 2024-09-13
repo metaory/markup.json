@@ -1,0 +1,33 @@
+[
+  ["h1", "marκup.json"],
+  ["hr"],
+  [
+    "h4",
+    "DOM tree",
+    "representation in",
+    ["i", "compact"],
+    "JSON"
+  ],
+  [
+    "a",
+    {
+      "class": "primary",
+      "data-planet-id": "92432",
+      "href": [
+        "github.com/search?",
+        {
+          "q": "markup",
+          "type": "repositories"
+        }
+      ],
+      "style": {
+        "color": "indigo",
+        "background": "fuchsia"
+      }
+    },
+    "🔥 First Class Attribute Strings"
+  ],
+  "Spec",
+  "CLI",
+  "Library"
+]
