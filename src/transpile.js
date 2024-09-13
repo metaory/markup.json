@@ -1,5 +1,5 @@
 const LB = '\n'
-const TB = ' '.repeat(4)
+const TB = ' '.repeat(2)
 
 const foldString = (obj, sep = '&', eq = '=', pre = '') =>
   pre +
