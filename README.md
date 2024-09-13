@@ -18,8 +18,8 @@
 ---
 
 <div align="center">
-  <img alt="preview-json" width="80%" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-json.png">
-  <img alt="preview-html" width="80%" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-html.png">
+  <img alt="preview-json" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-json.png">
+  <img alt="preview-html" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-html.png">
 </div>
 
 ---
@@ -88,8 +88,10 @@ cat .github/preview.json
 import { readFile } from 'node:fs/promises'
 import markup from 'markup.json'
 
-const content = JSON.parse(await readFile('./mini.json', { encoding: 'utf8' }))
-const html = markup(content)
+const opt = { encoding: 'utf8' }
+const tpl = await readFile('./tpl.json', opt)
+
+const html = markup(JSON.parse(tpl))
 ```
 
 ```html
