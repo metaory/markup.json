@@ -3,10 +3,14 @@
   ["hr"],
   [
     "h4",
-    "DOM tree",
-    "representation in",
-    ["i", "compact"],
-    "JSON"
+    "DOM Markup Abstract Syntax Tree",
+    "in",
+    ["i", "compact JSON"]
+  ],
+  [
+    "h5",
+    "Specification",
+    "Transformer Library and CLI"
   ],
   [
     "a",
@@ -27,7 +31,5 @@
     },
     "🔥 First Class Attribute Strings"
   ],
-  "Spec",
-  "CLI",
-  "Library"
+  "0.1"
 ]

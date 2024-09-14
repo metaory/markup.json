@@ -4,16 +4,17 @@
 	</h1>
   <img alt="logo" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/markup.svg" width="200px">
 	<hr />
-	<h5>
-		HTML DOM tree representation in compact JSON
-	</h5>
+	<h4>
+		DOM Markup Abstract Syntax Tree representation in compact JSON
+	</h4>
+  <h5>
+		Specification, Transformer Library and CLI
+  </h5>
 	<h3>
 		First Class Support for Attributes String
 	</h3>
 </div>
 <hr />
-
-### Designed around Array indices
 
 ---
 
