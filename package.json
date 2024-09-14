@@ -12,7 +12,7 @@
   "repository": "git+https://github.com/metaory/markup.json.git",
   "scripts": {
     "build": "npx unbuild@rc",
-    "dev": "node --watch src/index.js",
+    "dev": "node --watch-path=src/transpile.js --watch-path=test/dev.json test/dev.js test/dev.json",
     "start": "node src/index.js",
     "test": "node --test --test-concurrency 1"
   },
