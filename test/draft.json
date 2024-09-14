@@ -11,7 +11,6 @@
     ["h4", "Library and CLI"],
     ["h6", "zero dependencies"]
   ],
-
   "kkkzzzz",
   [
     "div",
@@ -142,11 +141,23 @@
   ["span", "bare val with no attr"],
   ["span", "multi bare val with no attr", "moremore"],
   ["span", { "id": "bare", "class": "huh" }, "bare value with attr"],
-  ["span", { "id": "multi-bWattr" }, "multi bare value with attr", "morewithtth"],
+  [
+    "span",
+    { "id": "multi-bWattr" },
+    "multi bare value with attr",
+    "morewithtth"
+  ],
 
   ["span", { "id": "nested" }, "next is BIG", ["h1", "HEAD"]],
   ["span", { "id": "foo" }, "okk", ["h3", ["p", "deep"]], ["h2", "TITLE"]],
 
-  ["a", { "href": ["https://acme.com/search?", { "user": "void", "org": "nada" }] }],
-  ["button", { "style": { "color": "indigo", "margin": "12px" }, "class": "btn" }, "GOGO"]
+  [
+    "a",
+    { "href": ["https://acme.com/search?", { "user": "void", "org": "nada" }] }
+  ],
+  [
+    "button",
+    { "style": { "color": "indigo", "margin": "12px" }, "class": "btn" },
+    "GOGO"
+  ]
 ]

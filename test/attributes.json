@@ -1,5 +1,13 @@
 [
-  ["button", { "class": "primary btn", "name": "xorg" }, "hi", "main btn"],
+  "some attr",
+  [
+    "button",
+    { "class": "primary btn", "name": "xorg" },
+    "hi",
+    { "class": "shadow" },
+    "main btn",
+    { "hyy": "xo" }
+  ],
   [
     "span",
     {

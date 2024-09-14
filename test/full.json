@@ -1,4 +1,6 @@
 [
+  "heyyy",
+  "top level",
   ["span", "bare val with no attr"],
   ["span", "multi bare val with no attr", "moremore"],
   ["span", { "id": "bWattr" }, "bare value with attr"],
