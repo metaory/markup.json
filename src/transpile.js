@@ -1,60 +1,72 @@
 const LB = '\n'
 const TB = ' '.repeat(2)
 
+const indent = n => TB.repeat(n)
+
 const foldString = (obj, sep = '&', eq = '=', pre = '') =>
   pre +
   Object.keys(obj)
     .reduce((str, key) => (str += key + eq + obj[key] + sep), '')
     .trim()
 
-const foldAttributes = attributes =>
-  Object.keys(attributes).reduce((acc, cur) => {
-    const val = attributes[cur]
+const foldAttributes = (attr, depth) =>
+  Object.keys(attr).reduce((acc, cur) => {
+    const val = attr[cur]
 
-    acc += ` ${cur}="`
+    acc += LB
+    acc += indent(depth + 1)
+    acc += cur
+    acc += '="'
 
     switch (val.constructor) {
-      case String:
-        acc += val
-        break
       case Object:
         acc += foldString(val, '; ', ':')
         break
       case Array:
         acc += foldString(val.at(1), '&', '=', val.at(0))
         break
+      case String:
+        acc += val
     }
-    acc += '"'
-    return acc
-  }, '')
 
-const indent = n => Array(n).fill(TB).join('')
+    return acc + '"'
+  }, '')
 
 export default function (arr) {
   let html = ''
 
   function walk(nodes, depth = 0) {
     for (const node of nodes) {
-      const [tag, ...parts] = node || []
-
       if (node.constructor === String) {
         html += node
         html += LB
         continue
       }
 
+      const [tag] = node
+
       html += indent(depth)
       html += '<'
       html += tag
 
-      const [attributes = {}] = parts
+      const [attr, ...frags] = node
+        .slice(1)
+        .reduce(
+          ([attr, ...acc], cur) =>
+            cur.constructor === Object
+              ? [{ ...attr, ...cur }, ...acc]
+              : [attr, ...acc, cur],
+          [{}]
+        )
 
-      if (attributes.constructor === Object) {
-        html += foldAttributes(attributes)
-        parts.shift()
+      html += foldAttributes(attr, depth)
+
+      if (Object.keys(attr).length) {
+        html += LB
+        html += indent(depth)
       }
 
-      if (!parts.length) {
+      if (!frags.length) {
         html += ' />'
         html += LB
         continue
@@ -63,15 +75,13 @@ export default function (arr) {
       html += '>'
       html += LB
 
-      for (const line of parts) {
-        if (typeof line !== 'object') {
-          html += indent(depth)
-          html += TB
-          html += line
+      for (const frag of frags) {
+        if (frag.constructor === Array) walk([frag], depth + 1)
+        else {
+          html += indent(depth + 1)
+          html += frag
           html += LB
         }
-
-        if (Array.isArray(line)) walk([line], depth + 1)
       }
 
       html += indent(depth)

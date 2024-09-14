@@ -50,6 +50,8 @@ cat .github/preview.json
 
 ```json
 [
+  "headless",
+  "",
   ["h1", "marκup.json"],
   ["hr"],
   [
@@ -95,6 +97,8 @@ const html = markup(JSON.parse(tpl))
 ```
 
 ```html
+headless
+
 <h1>
   marκup.json
 </h1>
@@ -110,8 +114,8 @@ const html = markup(JSON.parse(tpl))
 <a
   class="primary"
   data-planet-id="92432"
-  href="github.com/search?q=markup&type=repositories"
-  style="color: indigo; background: fuchsia;"
+  href="github.com/search?q=markup&type=repositories&"
+  style="color:indigo; background:fuchsia;"
 >
   🔥 First Class Attribute Strings
 </a>
@@ -159,7 +163,9 @@ markup [FILE] [FILE]
 markup tpl.json index.html
     # or with npx
 npx markup.json tpl.json index.html
+```
 
+```sh
   # read input path from args
   # write output to standard output
 markup [FILE]
@@ -167,7 +173,9 @@ markup tpl.json
 markup tpl.json > index.html
     # or with npx
 npx markup.json tpl.json > index.html
+```
 
+```sh
   # read input from standard input
   # write output to standard output
 cat FILE | markup
@@ -175,7 +183,9 @@ cat tpl.json | markup
 cat tpl.json | markup > index.html
     # or with npx
 cat tpl.json | npx markup.json > index.html
+```
 
+```sh
   # read from file descriptor
   # write output to standard output
 markup < FILE
@@ -207,8 +217,9 @@ type Markup = Node[]
 
 ---
 
-##### Primitive Attribute values
+#### Primitive Attribute values
 Attributes with Primitive values are rendered as is;
+
 ```json
 [
   [
@@ -236,9 +247,95 @@ Attributes with Primitive values are rendered as is;
 </button>
 ```
 
+
 ---
 
-##### Attribute with Object values
+> [!Tip]
+> Attributes can come at any position
+
+```json
+[
+  "attributes open",
+  "position",
+  [
+    "button",
+    "hell",
+    {
+      "class": "primary btn",
+      "name": "xorg"
+    },
+    "OoO",
+    ["b", "main"],
+    "btn",
+    "here"
+  ]
+]
+```
+
+```html
+attributes open
+position
+<button
+  class="primary btn"
+  name="xorg"
+>
+  hell
+  OoO
+  <b>
+    main
+  </b>
+  btn
+  here
+</button>
+```
+
+---
+
+> [!Tip]
+> Repeated attributes will merge
+
+```json
+[
+  "top level",
+  "can be without tag",
+  [
+    "button",
+    {
+      "class": "primary btn",
+      "name": "xorg"
+    },
+    "hi",
+    { "class": "shadowed", "id": "usr" },
+    ["b", "main"],
+    "btn",
+    "here"
+  ],
+  "EO"
+]
+```
+
+```html
+top level
+can be without tag
+<button
+  class="shadowed"
+  name="xorg"
+  id="usr"
+>
+  hi
+  <b>
+    main
+  </b>
+  btn
+  here
+</button>
+EO
+```
+
+---
+
+
+#### Attribute with Object values
 
 Attributes with Object values are folded
 delimit key and value pairs with `;`
@@ -246,6 +343,7 @@ delimit keys and values with `:`
 
 ```json
 [
+  "OBJ Values",
   ["h4", "Attribute with Object values"],
   [
     "span",
@@ -268,21 +366,26 @@ delimit keys and values with `:`
 ```
 
 ```html
-<h4>Attribute with Object values</h4>
+OBJ Values
+<h4>
+  Attribute with Object values
+</h4>
 <span
   class="secondary"
-  style="color: indigo; background: fuchsia"
+  style="color:indigo; background:fuchsia;"
   anything="name:etc; planet:8e81;"
 >
   Object values
-  <b> x11 </b>
+  <b>
+    x11
+  </b>
   xorg
 </span>
 ```
 
 ---
 
-##### Attribute with Array values
+#### Attribute with Array values
 
 Attributes with Object values are folded
 delimit key and value pairs with `&`
@@ -290,6 +393,7 @@ delimit keys and values with `=`
 
 ```json
 [
+  "begin",
   ["h4", "Attribute with Array values"],
   [
     "a",
@@ -311,19 +415,26 @@ delimit keys and values with `=`
 ]
 ```
 ```html
-<h4>Attribute with Array values</h4>
+begin
+<h4>
+  Attribute with Array values
+</h4>
 <a
   class="secondary"
-  href="github.com/search?q=markup&type=repositories&l=Lua"
+  href="github.com/search?q=markup&type=repositories&l=Lua&"
 >
   go
-  <b> find </b>
+  <b>
+    find
+  </b>
   repos
 </a>
 ```
 
 ```json
 [
+  "attributes with",
+  "array attributes",
   [
     "img",
     {
@@ -347,9 +458,13 @@ delimit keys and values with `=`
 ```
 
 ```html
-<img width="80%"
-     alt="stats"
-     src="github-readme-stats.vercel.app/api?username=metaory&ring_color=5522CC&text_color=44BBFF&border_radius=30&hide_title=true&hide_rank=false&show_icons=true" />
+attributes with
+array attributes
+<img
+  width="80%"
+  alt="stats"
+  src="github-readme-stats.vercel.app/api?username=metaory&ring_color=5522CC&text_color=44BBFF&border_radius=30&hide_title=true&hide_rank=false&show_icons=true&"
+ />
 ```
 
 ---
