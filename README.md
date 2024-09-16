@@ -223,6 +223,8 @@ Attributes with Primitive values are rendered as is;
 
 ```json
 [
+  "top level",
+  "can be without tag",
   [
     "button",
     {
@@ -238,6 +240,8 @@ Attributes with Primitive values are rendered as is;
 ```
 
 ```html
+top level
+can be without tag
 <button
   class="primary btn"
   name="xorg"
@@ -248,11 +252,10 @@ Attributes with Primitive values are rendered as is;
 </button>
 ```
 
-
 ---
 
 > [!Tip]
-> Attributes can come at any position
+> Attributes can come at any position after tag
 
 ```json
 [
@@ -297,8 +300,8 @@ position
 
 ```json
 [
-  "top level",
-  "can be without tag",
+  "repeated",
+  "attributes",
   [
     "button",
     {
@@ -316,8 +319,8 @@ position
 ```
 
 ```html
-top level
-can be without tag
+repeated
+attributes
 <button
   class="shadowed"
   name="xorg"
@@ -435,7 +438,7 @@ begin
 ```json
 [
   "attributes with",
-  "array attributes",
+  "array values",
   [
     "img",
     {
@@ -460,7 +463,7 @@ begin
 
 ```html
 attributes with
-array attributes
+array values
 <img
   width="80%"
   alt="stats"
@@ -470,8 +473,15 @@ array attributes
 
 ---
 
-Draft Notes
------------
+> [!Tip]
+> Values are normalized with Unicode NFC Form Canonical Composition
+>
+> `"\u0041\u006d\u00e9\u006c\u0069\u0065"`
+> would be `"Amélie"`
+>
+> _ref:_ [Unicode_equivalence](https://en.wikipedia.org/wiki/Unicode_equivalence)
+
+---
 
 > [!Note]
 > The values `"true"` and `"false"` are not allowed on boolean attributes.
@@ -479,6 +489,39 @@ Draft Notes
 >
 > _ref:_ [2.3.2 Boolean attributes -- html.spec.whatwg.org](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attributes)
 
+```json
+[
+  "Boolean attributes",
+  ["hr"],
+  [
+    "label",
+    [
+      "input",
+      {
+        "type": "checkbox",
+        "name": "cheese",
+        "disabled": false,
+        "checked": true
+      }
+    ],
+    "Cheese"
+  ]
+]
+```
+```html
+Boolean attributes
+<hr />
+<label>
+  <input
+    type="checkbox"
+    name="cheese"
+    checked
+   />
+  Cheese
+</label>
+```
+
+---
 
 License
 -------

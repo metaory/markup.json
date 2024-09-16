@@ -1,0 +1,17 @@
+[
+  "Boolean attributes",
+  ["hr"],
+  [
+    "label",
+    [
+      "input",
+      {
+        "type": "checkbox",
+        "name": "cheese",
+        "disabled": false,
+        "checked": true
+      }
+    ],
+    "Cheese"
+  ]
+]

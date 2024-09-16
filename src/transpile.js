@@ -1,35 +1,42 @@
-const LB = '\n'
-const TB = ' '.repeat(2)
+const LF = '\n' // Line Feed
+const HT = ' '.repeat(2) // Horizontal Tab
 
-const indent = n => TB.repeat(n)
+const indent = n => HT.repeat(n)
+
+const normalize = x => String(x).normalize().trim()
 
 const foldString = (obj, sep = '&', eq = '=', pre = '') =>
+  '="' +
   pre +
   Object.keys(obj)
     .reduce((str, key) => (str += key + eq + obj[key] + sep), '')
-    .trim()
+    .trim() +
+  '"'
 
 const foldAttributes = (attr, depth) =>
   Object.keys(attr).reduce((acc, cur) => {
     const val = attr[cur]
 
-    acc += LB
-    acc += indent(depth + 1)
-    acc += cur
-    acc += '="'
+    if (val === null) return acc
+
+    const pre = LF + indent(depth + 1) + cur
 
     switch (val.constructor) {
       case Object:
-        acc += foldString(val, '; ', ':')
+        acc += pre + foldString(val, '; ', ':')
         break
       case Array:
-        acc += foldString(val.at(1), '&', '=', val.at(0))
+        acc += pre + foldString(val.at(1), '&', '=', val.at(0))
+        break
+      case Boolean:
+        if (val ===  true) acc += pre
         break
       case String:
-        acc += val
+      case Number:
+        acc += `${pre}="${normalize(val)}"`
     }
 
-    return acc + '"'
+    return acc
   }, '')
 
 export default function (arr) {
@@ -37,19 +44,17 @@ export default function (arr) {
 
   function walk(nodes, depth = 0) {
     for (const node of nodes) {
-      if (node.constructor === String) {
-        html += node
-        html += LB
+      if (node === null) continue
+      if (typeof node !== 'object') {
+        html += normalize(node) + LF
         continue
       }
 
       const [tag] = node
 
-      html += indent(depth)
-      html += '<'
-      html += tag
+      html += indent(depth) + '<' + tag
 
-      const [attr, ...frags] = node
+      const [attr, ...fragment] = node
         .slice(1)
         .reduce(
           ([attr, ...acc], cur) =>
@@ -62,31 +67,28 @@ export default function (arr) {
       html += foldAttributes(attr, depth)
 
       if (Object.keys(attr).length) {
-        html += LB
-        html += indent(depth)
+        html += LF + indent(depth)
       }
 
-      if (!frags.length) {
-        html += ' />'
-        html += LB
+      if (!fragment.length) {
+        html += ' />' + LF
         continue
       }
 
-      html += '>'
-      html += LB
+      html += '>' + LF
 
-      for (const frag of frags) {
-        if (frag.constructor === Array) walk([frag], depth + 1)
+      for (const part of fragment) {
+        if (part.constructor === Array) walk([part], depth + 1)
         else {
           html += indent(depth + 1)
-          html += frag
-          html += LB
+          html += normalize(part)
+          html += LF
         }
       }
 
       html += indent(depth)
       html += `</${tag}>`
-      html += LB
+      html += LF
     }
   }
 
