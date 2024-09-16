@@ -1,6 +1,6 @@
 {
   "name": "markup.json",
-  "description": "HTML DOM tree representation in compact JSON -- Draft Spec, Library and CLI",
+  "description": "DOM Markup Abstract Syntax Tree representation in compact JSON ╼╾ Specification, Transformer Library and CLI",
   "version": "0.1.2",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
