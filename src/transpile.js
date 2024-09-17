@@ -29,7 +29,7 @@ const foldAttributes = (attr, depth) =>
         acc += pre + foldString(val.at(1), '&', '=', val.at(0))
         break
       case Boolean:
-        if (val ===  true) acc += pre
+        if (val === true) acc += pre
         break
       case String:
       case Number:
@@ -66,9 +66,7 @@ export default function (arr) {
 
       html += foldAttributes(attr, depth)
 
-      if (Object.keys(attr).length) {
-        html += LF + indent(depth)
-      }
+      if (Object.keys(attr).length) html += LF + indent(depth)
 
       if (!fragment.length) {
         html += ' />' + LF
