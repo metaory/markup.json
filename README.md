@@ -11,7 +11,7 @@
 		Specification, Transformer Library and CLI
   </h5>
 	<h3>
-		First Class Support for Attributes String
+		First Class Attribute Strings
 	</h3>
 </div>
 <hr />
