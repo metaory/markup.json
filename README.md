@@ -19,8 +19,8 @@
 ---
 
 <div align="center">
-  <img width="48%" alt="preview-json" valign="top" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-json.png">
-  <img width="48%" alt="preview-html" valign="top" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-html.png">
+  <img alt="preview-json" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-json.png">
+  <img alt="preview-html" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/preview-html.png">
 </div>
 
 ---
