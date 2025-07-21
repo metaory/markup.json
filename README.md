@@ -25,17 +25,90 @@
 
 ---
 
-> [!Tip]
-> Here are some real usage examples
->
-> - [metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
-> - [hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
+## 🎯 Where markup.json Shines
+
+### **Functional XML Generation**
+markup.json is the perfect functional tool for generating any XML-like output. Use it for HTML, SVG, RSS feeds, or any structured markup:
+
+```bash
+# Generate SVG from data
+curl api.example.com/chart-data | jq 'transform_to_svg' | markup > chart.svg
+
+# Generate RSS feed
+curl api.example.com/posts | jq 'transform_to_rss' | markup > feed.xml
+
+# Generate HTML portfolio
+curl api.github.com/users/metaory/repos | jq 'transform_to_portfolio' | markup > portfolio.html
+```
+
+### **Unix Pipeline Integration**
+Perfect synergy with `jq` for functional data transformation:
+```bash
+# One-liner: API → Transform → Markup → Output
+curl api.example.com/data | jq '.[] | select(.active) | transform_to_card' | markup > cards.html
+```
+
+### **Configuration-Driven UI Generation**
+Generate HTML from JSON configs without template engines:
+```json
+[
+  "dashboard",
+  ["h1", "User Dashboard"],
+  ["div", {"class": "stats"},
+    ["span", "Users: 1,234"],
+    ["span", "Revenue: $56,789"]
+  ]
+]
+```
+
+### **API Response to HTML Transformation**
+Convert API responses directly to HTML without intermediate steps:
+```bash
+curl api.example.com/users | jq 'transform_to_markup' | markup > users.html
+```
+
+### **Static Site Generation from Data**
+Perfect for generating documentation, portfolios, or reports from structured data:
+- **Documentation sites** from JSON schemas
+- **Portfolio pages** from project metadata
+- **Report generation** from analytics data
+
+### **CLI Tools with Rich Output**
+Create beautiful CLI outputs that can be piped to HTML:
+```bash
+git log --format=json | jq 'transform_to_changelog' | markup > changelog.html
+```
+
+### **Micro-Frontend Composition**
+Compose UI components as JSON and render them:
+```json
+[
+  "app",
+  ["header", {"component": "nav"}],
+  ["main", {"component": "dashboard"}],
+  ["footer", {"component": "stats"}]
+]
+```
 
 ---
 
-Library Usage
--------------
+## 🌟 Unique Advantages
 
+- **Zero Dependencies** - Pure JSON, no framework needed
+- **Language Agnostic** - Works with any language that can generate JSON
+- **Version Control Friendly** - JSON diffs are clean and readable
+- **Pipeline Integration** - Perfect for Unix-style data processing
+- **Schema Validation** - Can validate structure with JSON Schema
+- **Template Composition** - Combine multiple JSON templates
+- **Dynamic Attributes** - First-class support for complex attributes
+- **Functional Style** - Pure functions, no side effects
+- **XML Agnostic** - Generate any XML-like format (HTML, SVG, RSS, etc.)
+
+---
+
+## 🚀 Quick Start
+
+### **Library Installation**
 ```sh
 # install
 npm install markup.json
@@ -43,7 +116,90 @@ npm install markup.json
 pnpm add markup.json
 ```
 
+### **CLI Installation**
+```sh
+# install globally
+npm i -g markup.json
+# or
+pnpm add -g markup.json
+
+# or with npx
+npx markup.json
+```
+
+### **Basic Usage**
+```json
+[
+  "Hello",
+  ["h1", "World"],
+  ["p", "This is markup.json!"]
+]
+```
+
+```bash
+echo '["Hello", ["h1", "World"], ["p", "This is markup.json!"]]' | markup
+```
+
 ---
+
+<details>
+<summary><strong>🤔 The Headless HTML Generation Problem</strong></summary>
+
+Imagine you're in a CI environment with some JSON data and need to generate HTML. Here's how you'd solve it **without** markup.json:
+
+### **Traditional Approach (Complex)**
+```bash
+# Option 1: Template Engine (Node.js)
+npm install handlebars
+node -e "
+const Handlebars = require('handlebars');
+const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('data.json'));
+const template = fs.readFileSync('template.hbs', 'utf8');
+const compiled = Handlebars.compile(template);
+fs.writeFileSync('output.html', compiled(data));
+"
+
+# Option 2: Python Template Engine
+pip install jinja2
+python -c "
+import json
+from jinja2 import Template
+with open('data.json') as f: data = json.load(f)
+with open('template.html') as f: template = Template(f.read())
+with open('output.html', 'w') as f: f.write(template.render(**data))
+"
+
+# Option 3: Sed/Awk (Fragile)
+cat data.json | jq -r '.items[] | "\(.name): \(.description)"' | \
+awk '{print "<div><h3>" $1 "</h3><p>" $2 "</p></div>"}' > output.html
+```
+
+### **With markup.json (Simple)**
+```bash
+# One-liner: Data → Transform → HTML
+cat data.json | jq 'transform_to_markup' | markup > output.html
+```
+
+**Why markup.json wins:**
+- ✅ **No dependencies** - No npm/pip installs needed
+- ✅ **Pure functional** - Single pipeline, no side effects
+- ✅ **Version control friendly** - JSON templates are readable and diffable
+- ✅ **Language agnostic** - Works with any tool that outputs JSON
+- ✅ **CI/CD ready** - Perfect for automated environments
+
+</details>
+
+---
+
+<details>
+<summary><strong>📖 Complete Example</strong></summary>
+
+> [!Tip]
+> Here are some real usage examples
+>
+> - [metaory/README.sh](https://github.com/metaory/metaory/blob/master/README.sh)
+> - [hexocd-colorscheme/README.sh](https://github.com/metaory/hexocd-colorscheme/blob/master/README.sh)
 
 ```sh
 cat .github/preview.json
@@ -125,25 +281,14 @@ CLI
 Library
 ```
 
----
-
-CLI Installation
----------
-
-```sh
-# install globally
-npm i -g markup.json
-# or
-pnpm add -g markup.json
-
-# or with npx
-npx markup.json
-```
+</details>
 
 ---
 
-CLI Synopsis
-------------
+<details>
+<summary><strong>📋 CLI Usage Examples</strong></summary>
+
+## CLI Synopsis
 
 	markup [-]|FILE [FILE]
 
@@ -153,10 +298,7 @@ Reads input from **standard input** or **FILE**
 Writes to `stdout` or FILE
 
 
----
-
-CLI Usage
----------
+## CLI Usage
 
 ```sh
   # read input and output path from args
@@ -183,7 +325,7 @@ cat FILE | markup
 cat tpl.json | markup
 cat tpl.json | markup > index.html
     # or with npx
-cat tpl.json | npx markup.json > index.html
+npx markup.json tpl.json > index.html
 ```
 
 ```sh
@@ -196,9 +338,14 @@ markup < tpl.json > index.html
 npx markup.json < tpl.json > index.html
 ```
 
+</details>
 
-Types
------
+---
+
+<details>
+<summary><strong>🔧 Advanced Features & Types</strong></summary>
+
+## Types
 
 ```ts
 type Tag = string
@@ -521,8 +668,10 @@ Boolean attributes
 </label>
 ```
 
+</details>
+
 ---
 
-License
--------
+## License
+
 [MIT](LICENSE)
