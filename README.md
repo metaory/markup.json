@@ -108,34 +108,38 @@ Compose UI components as JSON and render them:
 
 ## 🚀 Quick Start
 
-### **Library Installation**
+### **Installation**
+
+**Library:**
 ```sh
-# install
 npm install markup.json
 # or
 pnpm add markup.json
 ```
 
-### **CLI Installation**
+**CLI:**
 ```sh
-# install globally
 npm i -g markup.json
 # or
 pnpm add -g markup.json
-
 # or with npx
 npx markup.json
 ```
 
 ### **Basic Usage**
-```json
-[
+
+**Library:**
+```javascript
+import markup from 'markup.json'
+
+const html = markup([
   "Hello",
   ["h1", "World"],
   ["p", "This is markup.json!"]
-]
+])
 ```
 
+**CLI:**
 ```bash
 echo '["Hello", ["h1", "World"], ["p", "This is markup.json!"]]' | markup
 ```
