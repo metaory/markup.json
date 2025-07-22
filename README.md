@@ -1,20 +1,20 @@
 <div align="center">
-	<h1>
-		mʌrκup.json
-	</h1>
-  <img alt="logo" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/markup.svg" width="200px">
+  <img alt="logo" src="https://raw.githubusercontent.com/metaory/markup.json/master/.github/assets/logo.png" width="80%">
 	<hr />
 	<h4>
-		DOM Markup Abstract Syntax Tree representation in compact JSON
+    A minimal markup DSL and AST for JSON
 	</h4>
   <h5>
-		Specification, Transformer Library and CLI
+		Transforms into HTML, SVG or XML-like output via CLI or JS library
   </h5>
-	<h3>
-		First Class Attribute Strings
-	</h3>
+	<h6>
+		W/ First Class Attribute Strings
+	</h6>
 </div>
 <hr />
+
+`markup.json` is a compact, declarative JSON-based DSL for representing markup structures.
+It defines an AST format and provides a CLI and library to transform it into XML-like output (HTML, SVG, RSS, etc).
 
 ---
 
