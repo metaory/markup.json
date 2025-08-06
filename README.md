@@ -5,10 +5,10 @@
     A minimal markup DSL and AST for JSON
 	</h4>
   <h5>
-		Transforms into HTML, SVG or XML-like output via CLI or JS library
+		Transforms into HTML, SVG or XML-like output <br> via CLI or JS library
   </h5>
 	<h6>
-		W/ First Class Attribute Strings
+		w/ First Class Attribute Strings
 	</h6>
 </div>
 <hr />
